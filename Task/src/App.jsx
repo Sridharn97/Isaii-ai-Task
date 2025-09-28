@@ -29,10 +29,24 @@ const App = () => {
   // Reset reveal-up classes on page change
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal-up');
+    // Reset classes
     revealElements.forEach((el) => {
       el.classList.remove('opacity-100', 'translate-y-0');
       el.classList.add('opacity-0', 'translate-y-12');
     });
+    // Trigger scroll handler to reveal visible elements immediately
+    const revealOnScroll = () => {
+      revealElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (
+          rect.top < window.innerHeight - 40 &&
+          !el.classList.contains('opacity-100')
+        ) {
+          el.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    };
+    revealOnScroll();
   }, [currentPage]);
 
   const navigation = [
@@ -518,7 +532,7 @@ const App = () => {
                 providing businesses with strategic, actionable problem-solving
                 tools.
               </p>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">
+              <button className="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">
                 Schedule a call
                 <ChevronRight className="ml-2" size={20} />
               </button>
@@ -815,7 +829,7 @@ const App = () => {
                 placeholder="Your Email"
                 className="bg-transparent outline-none text-gray-300 flex-1 py-2 px-0"
               />
-              <button type="submit" className="ml-4 text-gray-300 hover:text-white">
+              <button type="submit" className="ml-4 text-gray-300">
                 <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
@@ -823,12 +837,12 @@ const App = () => {
             </form>
           </div>
           <div className="flex gap-4 mt-4">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-2xl">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-2xl">
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="3"/><path d="M17.5 6.5h.01"/>
               </svg>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-2xl">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-2xl">
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/>
               </svg>
