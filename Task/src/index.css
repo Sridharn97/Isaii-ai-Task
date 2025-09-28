@@ -1,1 +1,21 @@
 @import "tailwindcss";
+/* Add to src/index.css or your global CSS file */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+.animate-float-slow { animation: float 5s ease-in-out infinite; }
+.animate-float-medium { animation: float 3.5s ease-in-out infinite; }
+.animate-float-fast { animation: float 2.5s ease-in-out infinite; }
+.reveal-up {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.reveal-up.opacity-100 {
+  opacity: 1 !important;
+}
+.reveal-up.translate-y-0 {
+  transform: translateY(0) !important;
+}

@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, Rocket, Compass, Monitor, Phone, MessageSquare, MapPin, Menu, X } from 'lucide-react';
 
-const IsaiiWebsite = () => {
+// Custom hook to add reveal animation on scroll
+const useRevealOnScroll = () => {
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-up');
+    const revealOnScroll = () => {
+      revealElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (
+          rect.top < window.innerHeight - 40 &&
+          !el.classList.contains('opacity-100')
+        ) {
+          el.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+    return () => window.removeEventListener('scroll', revealOnScroll);
+  }, []);
+};
+
+const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Reset reveal-up classes on page change
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-up');
+    revealElements.forEach((el) => {
+      el.classList.remove('opacity-100', 'translate-y-0');
+      el.classList.add('opacity-0', 'translate-y-12');
+    });
+  }, [currentPage]);
 
   const navigation = [
     { name: 'Home', key: 'home' },
@@ -22,7 +52,6 @@ const IsaiiWebsite = () => {
               <span className="text-gray-400 text-sm ml-1">AI</span>
             </span>
           </div>
-          
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
@@ -39,7 +68,6 @@ const IsaiiWebsite = () => {
               </button>
             ))}
           </nav>
-
           {/* Mobile menu button */}
           <button
             className="md:hidden"
@@ -48,7 +76,6 @@ const IsaiiWebsite = () => {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t">
@@ -72,95 +99,6 @@ const IsaiiWebsite = () => {
         )}
       </div>
     </header>
-  );
-
-  const HomePage = () => (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-gray-50 py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-black rounded-3xl p-8 lg:p-16 relative overflow-hidden">
-            <div className="relative z-10 max-w-2xl">
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Innovate, Automate,
-                <br />
-                and Succeed with AI
-              </h1>
-              <p className="text-gray-300 text-lg lg:text-xl mb-8 leading-relaxed">
-                Innovative AI technology designed to solve pressing challenges,
-                providing businesses with strategic, actionable problem-solving
-                tools.
-              </p>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">
-                Schedule a call
-                <ChevronRight className="ml-2" size={20} />
-              </button>
-            </div>
-            
-            {/* Decorative 3D elements */}
-            <div className="absolute top-8 right-8 opacity-20">
-              <div className="w-24 h-24 bg-white rounded-full"></div>
-            </div>
-            <div className="absolute bottom-8 right-16 opacity-30">
-              <div className="w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full"></div>
-            </div>
-            <div className="absolute bottom-16 right-32 opacity-25">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-2xl transform rotate-45"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Unleash the Power of Our AI Innovations
-            </h2>
-            <p className="text-gray-600 text-lg max-w-4xl mx-auto">
-              From data processing to intelligent automation, our AI solutions seamlessly integrate into your
-              existing infrastructure, empowering you to make smarter, faster decisions
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
-                <Rocket className="text-gray-600" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Products</h3>
-              <p className="text-gray-600">
-                Explore our suite of advanced AI solutions crafted to optimize workflows, elevate
-                user experiences, and foster innovation across diverse industries and platforms.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
-                <Compass className="text-gray-600" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Design</h3>
-              <p className="text-gray-600">
-                Redefine digital experiences with our dynamic design expertise, crafted to
-                engage users through visually compelling and purpose-driven creations.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
-                <Monitor className="text-gray-600" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Customised Products</h3>
-              <p className="text-gray-600">
-                Experience our tailored AI services designed to automate processes, improve
-                decision-making, and deliver transformative results for businesses across various domains.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
   );
 
   const ProductsPage = () => (
@@ -406,8 +344,13 @@ const IsaiiWebsite = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('Form submitted:', formData);
-      // Handle form submission here
+      alert('Thank you for your message! We will get back to you soon.');
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        message: ''
+      });
     };
 
     return (
@@ -550,10 +493,357 @@ const IsaiiWebsite = () => {
     );
   };
 
+  const HomePage = () => (
+    <div>
+      {/* Hero Section */}
+      <section className="bg-gray-50 py-16 lg:py-24 reveal-up opacity-0 translate-y-12 transition-all duration-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className="bg-black rounded-3xl relative overflow-hidden flex flex-col lg:flex-row"
+            style={{
+              padding: '2rem 1rem',
+              minHeight: '500px',
+              width: '100%',
+            }}
+          >
+            {/* Left: Text Content */}
+            <div className="relative z-10 flex-1 flex flex-col justify-center items-center lg:items-start lg:pl-8">
+              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
+                Innovate, Automate, 
+                and Succeed with AI
+                <br />
+              </h1>
+              <p className="text-gray-300 text-lg lg:text-xl mb-8 leading-relaxed text-center lg:text-left max-w-xl">
+                Innovative AI technology designed to solve pressing challenges,
+                providing businesses with strategic, actionable problem-solving
+                tools.
+              </p>
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">
+                Schedule a call
+                <ChevronRight className="ml-2" size={20} />
+              </button>
+            </div>
+            {/* Right: Floating Images */}
+            <div className="relative flex-1 flex items-center justify-center min-h-[200px]">
+              {/* Show all three images on large screens */}
+              <img
+                src="https://framerusercontent.com/images/Es0UNVEZFUO6pTmc3NI38eovew.png?scale-down-to=512"
+                alt="AI Shape 1"
+                className="absolute top-0 right-8 w-36 h-36 object-cover rounded-full shadow-lg animate-float-slow hidden sm:block"
+                style={{ animationDelay: '0s' }}
+              />
+              <img
+                src="https://framerusercontent.com/images/LFAxsa4CpX7e4qBI72ijOV2sHg.png?scale-down-to=512"
+                alt="AI Shape 3"
+                className="absolute top-1/2 right-0 w-28 h-28 object-cover rounded-full shadow-lg animate-float-fast hidden md:block"
+                style={{ animationDelay: '1s', transform: 'translateY(-50%)' }}
+              />
+              <img
+                src="https://framerusercontent.com/images/Tq3lgO9Qy66CFuDaYW99KQ5xoLM.png?scale-down-to=512"
+                alt="AI Shape 2"
+                className="absolute bottom-8 right-24 w-32 h-32 object-cover rounded-full shadow-lg animate-float-medium hidden lg:block"
+                style={{ animationDelay: '0.5s' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 lg:py-24 reveal-up opacity-0 translate-y-12 transition-all duration-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Unleash the Power of Our AI Innovations
+            </h2>
+            <p className="text-gray-600 text-lg max-w-4xl mx-auto">
+              From data processing to intelligent automation, our AI solutions seamlessly integrate into your
+              existing infrastructure, empowering you to make smarter, faster decisions
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gray-50 p-8 rounded-2xl reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
+                <Rocket className="text-gray-600" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Products</h3>
+              <p className="text-gray-600">
+                Explore our suite of advanced AI solutions crafted to optimize workflows, elevate
+                user experiences, and foster innovation across diverse industries and platforms.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-8 rounded-2xl reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
+                <Compass className="text-gray-600" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Design</h3>
+              <p className="text-gray-600">
+                Redefine digital experiences with our dynamic design expertise, crafted to
+                engage users through visually compelling and purpose-driven creations.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-8 rounded-2xl reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
+                <Monitor className="text-gray-600" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Customised Products</h3>
+              <p className="text-gray-600">
+                Experience our tailored AI services designed to automate processes, improve
+                decision-making, and deliver transformative results for businesses across various domains.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Professional Services Section */}
+      <section className="py-16 lg:py-24 bg-white reveal-up opacity-0 translate-y-12 transition-all duration-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="flex items-center mb-8">
+            <div className="w-6 h-6 bg-gray-300 rounded mr-3 flex items-center justify-center">
+              <div className="w-3 h-3 bg-gray-600 rounded"></div>
+            </div>
+            <span className="text-gray-600 text-sm">Our services</span>
+          </div>
+
+          {/* Title Section */}
+          <div className="grid lg:grid-cols-2 gap-16 mb-16">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+                Professional Services That
+                <br />
+                Showcase Our Expertise.
+              </h2>
+            </div>
+            <div className="flex items-center">
+              <p className="text-gray-600 text-lg">
+                From creative design to technical solutions, our
+                services define industry excellence
+              </p>
+            </div>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid lg:grid-cols-5 gap-6">
+            {/* SaaS Products Card */}
+            <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg overflow-hidden reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="h-64 bg-gradient-to-br from-purple-100 to-indigo-100 p-6">
+                <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
+                  <div className="w-full">
+                    <div className="bg-gray-900 rounded-lg p-3 text-center">
+                      <div className="text-white text-xs mb-2">Learn how to design</div>
+                      <div className="text-white text-xs mb-3">creative user interfaces</div>
+                      <div className="bg-purple-600 text-white px-3 py-1 rounded text-xs inline-block mb-3">Design</div>
+                      <div className="w-12 h-12 bg-purple-600 rounded-lg mx-auto"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold text-xl text-gray-900 mb-4">SaaS Products</h3>
+                <p className="text-gray-600 mb-4">
+                  We offer scalable SaaS products that streamline operations, enhance user
+                  experience, and provide efficient solutions tailored to your business needs.
+                </p>
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">R</span>
+                  </div>
+                  <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                    <span className="text-black text-xs font-bold">JS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Outstaffing Card */}
+            <div className="lg:col-span-1 bg-white rounded-2xl shadow-lg overflow-hidden reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="h-32 bg-gradient-to-br from-blue-50 to-purple-50 p-4 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-bold text-sm text-gray-900 mb-1">
+                    Outstaffing of IT specialists and project teams
+                  </h3>
+                  <p className="text-gray-600 text-xs mb-2">
+                    We select specialists and connect them to projects in 48 hours.
+                  </p>
+                </div>
+                <div className="flex space-x-1 justify-center">
+                  <div className="w-8 h-8 bg-orange-300 rounded-full"></div>
+                  <div className="w-8 h-8 bg-blue-300 rounded-full"></div>
+                  <div className="w-8 h-8 bg-green-300 rounded-full"></div>
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="font-bold text-lg text-gray-900 mb-2">Custom AI Solutions</h3>
+                <p className="text-gray-600 text-sm">
+                  We provide bespoke AI systems tailored to your business needs, enhancing efficiency,
+                  performance, and driving continuous innovation.
+                </p>
+                <div className="mt-4 bg-gray-800 rounded-lg p-3">
+                  <div className="grid grid-cols-2 gap-1">
+                    <div className="bg-white rounded p-1">
+                      <div className="w-full h-4 bg-red-200 rounded mb-1"></div>
+                      <div className="w-full h-1 bg-gray-200 rounded"></div>
+                    </div>
+                    <div className="bg-white rounded p-1">
+                      <div className="w-full h-4 bg-blue-200 rounded mb-1"></div>
+                      <div className="w-full h-1 bg-gray-200 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Web Application Card */}
+            <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg overflow-hidden reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="h-64 bg-gradient-to-br from-yellow-50 to-orange-50 p-6">
+                <div className="bg-white rounded-lg p-4 h-full">
+                  <div className="grid grid-cols-3 gap-2 h-full">
+                    <div className="space-y-2">
+                      <div className="bg-gray-100 rounded p-2">
+                        <div className="w-full h-3 bg-purple-200 rounded mb-1"></div>
+                        <div className="w-3/4 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                      <div className="bg-gray-100 rounded p-2">
+                        <div className="w-full h-3 bg-green-200 rounded mb-1"></div>
+                        <div className="w-3/4 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="bg-gray-100 rounded p-2">
+                        <div className="w-full h-3 bg-blue-200 rounded mb-1"></div>
+                        <div className="w-3/4 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                      <div className="bg-gray-100 rounded p-2">
+                        <div className="w-full h-3 bg-pink-200 rounded mb-1"></div>
+                        <div className="w-3/4 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="bg-gray-100 rounded p-2">
+                        <div className="w-full h-3 bg-yellow-200 rounded mb-1"></div>
+                        <div className="w-3/4 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                      <div className="bg-gray-100 rounded p-2">
+                        <div className="w-full h-3 bg-indigo-200 rounded mb-1"></div>
+                        <div className="w-3/4 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold text-xl text-gray-900 mb-4">Web Application</h3>
+                <p className="text-gray-600 mb-4">
+                  We develop custom web applications designed to deliver seamless
+                  functionality, improve user engagement, and drive business growth through
+                  intuitive, responsive design.
+                </p>
+              </div>
+            </div>
+
+            {/* Designing Card */}
+            <div className="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="grid lg:grid-cols-2 h-full">
+                <div className="p-6 lg:p-8 flex flex-col justify-center">
+                  <h3 className="font-bold text-xl text-gray-900 mb-4">Designing</h3>
+                  <p className="text-gray-600 mb-6">
+                    We provide expert design services that ensure your digital platforms are visually
+                    appealing, user-centric, and aligned with your brand's goals for optimal customer
+                    interaction.
+                  </p>
+                </div>
+                <div className="h-64 lg:h-full bg-gradient-to-br from-gray-50 to-blue-50 p-6">
+                  <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                        <div className="w-12 h-12 bg-blue-500 rounded"></div>
+                      </div>
+                      <div className="text-sm text-gray-600">Design Interface</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Application Card */}
+            <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg overflow-hidden reveal-up opacity-0 translate-y-12 transition-all duration-700">
+              <div className="h-48 bg-gradient-to-br from-green-50 to-teal-50 p-6">
+                <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-20 bg-gray-800 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <div className="text-white text-xs">📱</div>
+                    </div>
+                    <div className="text-sm text-gray-600">Mobile Interface</div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold text-xl text-gray-900 mb-4">Mobile Application</h3>
+                <p className="text-gray-600 mb-4">
+                  We create mobile applications that provide seamless user experiences,
+                  leveraging device capabilities to deliver engaging and interactive solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  );
+
+  const Footer = () => (
+    <footer className="bg-black text-gray-300 pt-16 pb-8 px-8 mt-16">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+        {/* Left: Brand and Copyright */}
+        <div className="flex-1">
+          <h1 className="text-6xl font-semibold text-gray-400 mb-8">ISAI-AI</h1>
+          <p className="mt-8 text-lg">Copyright © 2024 – Isaii-AI</p>
+        </div>
+        {/* Right: Newsletter & Social */}
+        <div className="flex-1 flex flex-col gap-8">
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Subscribe to Our Newsletter</h2>
+            <form className="flex items-center border-b border-gray-700 pb-2">
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="bg-transparent outline-none text-gray-300 flex-1 py-2 px-0"
+              />
+              <button type="submit" className="ml-4 text-gray-300 hover:text-white">
+                <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div className="flex gap-4 mt-4">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-2xl">
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="3"/><path d="M17.5 6.5h.01"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-2xl">
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
         return <HomePage />;
+        
       case 'products':
         return <ProductsPage />;
       case 'services':
@@ -565,12 +855,17 @@ const IsaiiWebsite = () => {
     }
   };
 
+  useRevealOnScroll(); // Add this hook to enable scroll reveal
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
-      {renderCurrentPage()}
+      <div className="flex-1">
+        {renderCurrentPage()}
+      </div>
+      <Footer />
     </div>
   );
 };
 
-export default IsaiiWebsite;
+export default App;
