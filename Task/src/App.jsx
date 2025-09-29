@@ -118,67 +118,75 @@ const App = () => {
               title: 'Isaii-Daillo',
               subtitle: 'Telephony AI',
               type: 'AI Telephony AGENT',
-              gradient: 'from-teal-400 to-cyan-500'
+              gradient: 'from-teal-400 to-cyan-500',
+              image: 'https://framerusercontent.com/images/nUyYMvoY4UXXPS7H1sUU2NlZYk.jpg?scale-down-to=1024'
             },
             {
               title: 'Isaii Whispher',
               subtitle: 'Voice AI that can be integrated wherever he want',
               type: 'AI Custom Chat AGENT',
-              gradient: 'from-purple-400 to-pink-500'
+              gradient: 'from-purple-400 to-pink-500',
+              image: 'https://framerusercontent.com/images/fq3HOUsRRP2u0Lcppvq43g.png'
             },
             {
               title: 'Isaii Assit',
               subtitle: 'Chatbot that can be integrated to their website in 1 click',
               type: 'AI CustomVoice AGENT',
-              gradient: 'from-blue-400 to-indigo-500'
+              gradient: 'from-blue-400 to-indigo-500',
+              image: 'https://framerusercontent.com/images/SugX8Csm6hUFMJwDS1pwfOwIoXk.png'
             },
             {
-              title: 'Product 4',
+              title: 'Isaii WhatsApp',
               subtitle: 'Coming Soon',
               type: 'AI AGENT',
-              gradient: 'from-green-400 to-emerald-500'
+              gradient: 'from-green-400 to-emerald-500',
+              image: 'https://framerusercontent.com/images/t91I5eij1mhMdwAqGQn15ZM9I3U.png'
             },
             {
-              title: 'Product 5',
+              title: 'Isaii Instagram',
               subtitle: 'Coming Soon',
               type: 'AI AGENT',
-              gradient: 'from-orange-400 to-red-500'
+              gradient: 'from-orange-400 to-red-500',
+              image: 'https://framerusercontent.com/images/0ImJTakP624MeStH5usjuO7qL5c.png'
             },
             {
-              title: 'Product 6',
+              title: 'Isaii Direct',
               subtitle: 'Coming Soon',
               type: 'AI AGENT',
-              gradient: 'from-pink-400 to-rose-500'
+              gradient: 'from-pink-400 to-rose-500',
+              image: 'https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png'
             },
             {
               title: 'Bill Buddy',
               subtitle: 'Ai integrated self billing system',
               type: 'Billing SYSTEM',
-              gradient: 'from-yellow-400 to-orange-500'
+              gradient: 'from-yellow-400 to-orange-500',
+              image: 'https://framerusercontent.com/images/keIZef0rznBr8S7SrzE19b2UYCY.png'
             },
             {
               title: 'Direkt',
               subtitle: 'Ai integrated product selling solution',
               type: 'Marketplace AGENT',
-              gradient: 'from-purple-400 to-indigo-500'
+              gradient: 'from-purple-400 to-indigo-500',
+              image: 'https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png'
             },
             {
               title: 'Isaii Commerce',
               subtitle: 'Ai intergrate E-commerce solution',
               type: 'E-commerce SOLUTION',
-              gradient: 'from-pink-400 to-blue-500'
+              gradient: 'from-pink-400 to-blue-500',
+              image: 'https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png'
             }
           ].map((product, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className={`h-48 bg-gradient-to-br ${product.gradient} flex items-center justify-center`}>
-                <div className="bg-white rounded-xl p-6 m-6 w-full">
-                  <div className="w-8 h-8 bg-black rounded-full mb-4 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-                  </div>
-                  <div className="text-purple-300 text-sm mb-2">AI</div>
-                  <div className="font-bold text-xl mb-1">{product.type.split(' ')[1]}</div>
-                  <div className="text-xs text-gray-500">{product.type}</div>
-                </div>
+              <div
+                className="h-48 w-full overflow-hidden bg-gray-100 cursor-pointer group"
+                onClick={() => setCurrentPage('contact')}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setCurrentPage('contact'); } }}
+              >
+                <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div className="p-6">
                 <h3 className="font-bold text-xl text-gray-900 mb-2">{product.title}</h3>
@@ -248,98 +256,67 @@ const App = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="h-64 bg-gradient-to-br from-orange-100 to-yellow-100 p-6">
-              <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-orange-200 rounded-lg mx-auto mb-4"></div>
-                  <div className="text-sm text-gray-600">Design Mockup</div>
-                </div>
-              </div>
+        {/* Three service cards with images as in reference */}
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {/* Designing */}
+          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
+            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
+              <img src="https://framerusercontent.com/images/vss98kimC7Rm3BkWtOJ4E7PF0.png?scale-down-to=512" alt="Designing" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl text-gray-900 mb-4">Designing</h3>
-              <p className="text-gray-600 mb-6">
-                We provide expert design services that ensure your digital platforms are visually appealing, user-centric,
-                and aligned with your brand's goals for optimal customer interaction.
-              </p>
-            </div>
+            <h3 className="mt-6 font-bold text-xl text-gray-900">Designing</h3>
+            <p className="text-gray-600 mt-2">
+              We provide expert design services that ensure your digital platforms are visually appealing, user-centric,
+              and aligned with your brand's goals for optimal customer interaction.
+            </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="h-64 bg-gradient-to-br from-purple-100 to-pink-100 p-6">
-              <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="flex space-x-2 justify-center mb-4">
-                    <div className="w-8 h-8 bg-purple-300 rounded-full"></div>
-                    <div className="w-8 h-8 bg-blue-300 rounded-full"></div>
-                    <div className="w-8 h-8 bg-green-300 rounded-full"></div>
-                  </div>
-                  <div className="text-sm text-gray-600">Team Collaboration</div>
-                </div>
-              </div>
+          {/* Custom AI Solutions */}
+          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
+            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
+              <img src="https://framerusercontent.com/images/HvEjI5nnCrtIvttqSWsyCuVM.jpg?scale-down-to=512" alt="Custom AI Solutions" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl text-gray-900 mb-4">Outstaffing of IT specialists and project teams</h3>
-              <p className="text-gray-600 mb-4">
-                We select specialists and connect them to projects in 48 hours.
-              </p>
-            </div>
+            <h3 className="mt-6 font-bold text-xl text-gray-900">Custom AI Solutions</h3>
+            <p className="text-gray-600 mt-2">
+              We build bespoke AI systems tailored to your business needs, enhancing efficiency, performance,
+              and driving continuous innovation.
+            </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="h-64 bg-gradient-to-br from-green-100 to-emerald-100 p-6">
-              <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-4"></div>
-                  <div className="text-sm text-gray-600">Web Application</div>
-                </div>
-              </div>
+          {/* SaaS Products */}
+          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
+            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
+              <img src="https://framerusercontent.com/images/gEuLZWqISbowA6Z5TeEzISEsgs.jpg?scale-down-to=512" alt="SaaS Products" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl text-gray-900 mb-4">Web Application</h3>
-              <p className="text-gray-600 mb-6">
-                We develop custom web applications designed to deliver seamless functionality, improve user engagement,
-                and drive business growth through intuitive, responsive design.
-              </p>
-            </div>
+            <h3 className="mt-6 font-bold text-xl text-gray-900">SaaS Products</h3>
+            <p className="text-gray-600 mt-2">
+              We offer scalable SaaS products that streamline operations, enhance user experience,
+              and provide efficient solutions tailored to your business needs.
+            </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden md:col-span-2 lg:col-span-1">
-            <div className="h-64 bg-gradient-to-br from-blue-100 to-indigo-100 p-6">
-              <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-4"></div>
-                  <div className="text-sm text-gray-600">SaaS Solution</div>
-                </div>
-              </div>
+          {/* Web Application */}
+          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
+            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
+              <img src="https://framerusercontent.com/images/HvEjI5nnCrtIvttqSWsyCuVM.jpg?scale-down-to=512" alt="Web Application" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl text-gray-900 mb-4">SaaS Products</h3>
-              <p className="text-gray-600 mb-6">
-                We offer scalable SaaS products that streamline operations, enhance user experience, and provide
-                efficient solutions tailored to your business needs.
-              </p>
-            </div>
+            <h3 className="mt-6 font-bold text-xl text-gray-900">Web Application</h3>
+            <p className="text-gray-600 mt-2">
+              We develop custom web applications designed to deliver seamless functionality, improve user
+              engagement, and drive business growth through intuitive, responsive design.
+            </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden md:col-span-2">
-            <div className="h-64 bg-gradient-to-br from-gray-100 to-slate-100 p-6">
-              <div className="bg-white rounded-lg p-4 h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gray-200 rounded-lg mx-auto mb-4"></div>
-                  <div className="text-sm text-gray-600">AI Solutions</div>
-                </div>
-              </div>
+          {/* Mobile Application */}
+          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
+            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
+              <img src="https://framerusercontent.com/images/KjsfCaVMvkjlLs2CFlHb4HZqE.jpg?scale-down-to=1024" alt="Mobile Application" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             </div>
-            <div className="p-6">
-              <h3 className="font-bold text-xl text-gray-900 mb-4">Custom AI Solutions</h3>
-              <p className="text-gray-600">
-                We provide bespoke AI systems tailored to your business needs, enhancing efficiency, performance,
-                and driving continuous innovation.
-              </p>
-            </div>
+            <h3 className="mt-6 font-bold text-xl text-gray-900">Mobile Application</h3>
+            <p className="text-gray-600 mt-2">
+              Our mobile app development services create user-friendly, high-performance apps that cater to your
+              business goals, offering a superior mobile experience for customers.
+            </p>
           </div>
         </div>
 
@@ -855,73 +832,63 @@ const App = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Product Cards (same as ProductsPage) */}
+            {/* Product Cards with images (same images as Products page) */}
             {[
               {
                 title: 'Isaii-Daillo',
                 subtitle: 'Telephony AI',
-                type: 'AI Telephony AGENT',
-                gradient: 'from-teal-400 to-cyan-500'
+                image: 'https://framerusercontent.com/images/nUyYMvoY4UXXPS7H1sUU2NlZYk.jpg?scale-down-to=1024'
               },
               {
                 title: 'Isaii Whispher',
-                subtitle: 'Voice Ai that can be integrated wherever he want',
-                type: 'AI Custom Chat AGENT',
-                gradient: 'from-purple-400 to-pink-500'
+                subtitle: 'Voice AI that can be integrated wherever he want',
+                image: 'https://framerusercontent.com/images/fq3HOUsRRP2u0Lcppvq43g.png'
               },
               {
                 title: 'Isaii Assit',
-                subtitle: 'Chatbot that can be intergrated to their website in 1 click',
-                type: 'AI CustomVoice AGENT',
-                gradient: 'from-blue-400 to-indigo-500'
+                subtitle: 'Chatbot that can be integrated to their website in 1 click',
+                image: 'https://framerusercontent.com/images/SugX8Csm6hUFMJwDS1pwfOwIoXk.png'
               },
               {
                 title: 'Isaii WhatsApp',
-                subtitle: 'Chatbot intergrated to Whatsapp',
-                type: 'Whatsapp AGENT',
-                gradient: 'from-green-400 to-teal-500'
+                subtitle: 'Coming Soon',
+                image: 'https://framerusercontent.com/images/t91I5eij1mhMdwAqGQn15ZM9I3U.png'
               },
               {
                 title: 'Isaii Instagram',
-                subtitle: 'Chatbot intergrated to Instagram',
-                type: 'Instagram AGENT',
-                gradient: 'from-pink-400 to-purple-500'
+                subtitle: 'Coming Soon',
+                image: 'https://framerusercontent.com/images/0ImJTakP624MeStH5usjuO7qL5c.png'
               },
               {
                 title: 'Isaii Direct',
-                subtitle: 'Directly Access our API with key and can limit your access',
-                type: 'API AGENT',
-                gradient: 'from-blue-400 to-cyan-500'
+                subtitle: 'Coming Soon',
+                image: 'https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png'
               },
               {
                 title: 'Bill Buddy',
                 subtitle: 'Ai integrated self billing system',
-                type: 'Billing SYSTEM',
-                gradient: 'from-yellow-400 to-orange-500'
+                image: 'https://framerusercontent.com/images/keIZef0rznBr8S7SrzE19b2UYCY.png'
               },
               {
                 title: 'Direkt',
                 subtitle: 'Ai integrated product selling solution',
-                type: 'Marketplace AGENT',
-                gradient: 'from-purple-400 to-indigo-500'
+                image: 'https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png'
               },
               {
                 title: 'Isaii Commerce',
                 subtitle: 'Ai intergrate E-commerce solution',
-                type: 'E-commerce SOLUTION',
-                gradient: 'from-pink-400 to-blue-500'
+                image: 'https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png'
               }
             ].map((product, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className={`h-48 bg-gradient-to-br ${product.gradient} flex items-center justify-center`}>
-                  <div className="bg-white rounded-xl p-6 m-6 w-full">
-                    <div className="w-8 h-8 bg-black rounded-full mb-4 flex items-center justify-center">
-                      <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-                    </div>
-                    <div className="text-purple-300 text-sm mb-2">AI</div>
-                    <div className="font-bold text-xl mb-1">{product.type.split(' ')[0]}</div>
-                    <div className="text-xs text-gray-500">{product.type}</div>
-                  </div>
+                <div
+                  className="h-48 w-full overflow-hidden bg-gray-100 cursor-pointer group"
+                  onClick={() => setCurrentPage('contact')}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setCurrentPage('contact'); } }}
+                >
+                  <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-bold text-xl text-gray-900 mb-2">{product.title}</h3>
