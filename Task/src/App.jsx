@@ -164,6 +164,24 @@ const App = () => {
               subtitle: 'Coming Soon',
               type: 'AI AGENT',
               gradient: 'from-pink-400 to-rose-500'
+            },
+            {
+              title: 'Bill Buddy',
+              subtitle: 'Ai integrated self billing system',
+              type: 'Billing SYSTEM',
+              gradient: 'from-yellow-400 to-orange-500'
+            },
+            {
+              title: 'Direkt',
+              subtitle: 'Ai integrated product selling solution',
+              type: 'Marketplace AGENT',
+              gradient: 'from-purple-400 to-indigo-500'
+            },
+            {
+              title: 'Isaii Commerce',
+              subtitle: 'Ai intergrate E-commerce solution',
+              type: 'E-commerce SOLUTION',
+              gradient: 'from-pink-400 to-blue-500'
             }
           ].map((product, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -184,8 +202,55 @@ const App = () => {
             </div>
           ))}
         </div>
+        {/* FAQ Section (same structure as Services) */}
+        <div className="mt-24">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Explore Our FAQs</h2>
+            <p className="text-gray-600">
+              Find quick answers to commonly asked questions about Neutra.
+              <br />
+              Have a question not listed?
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                question: 'Setup Process?',
+                answer: 'Initial setup is quick and user-friendly, allowing immediate use.'
+              },
+              {
+                question: 'Subscription Costs?',
+                answer: 'Various pricing plans are available to suit different budget needs.'
+              },
+              {
+                question: 'User Support?',
+                answer: '24/7 customer support is available via email, chat, and phone.'
+              },
+              {
+                question: 'Customization Options?',
+                answer: 'Fully customizable to match your brand\'s style and preferences.'
+              },
+              {
+                question: 'Refund Policy?',
+                answer: 'Full refunds provided within 30 days if not satisfied.'
+              },
+              {
+                question: 'Upgrade Options?',
+                answer: 'Easy upgrades available for additional features and capabilities.'
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
+                <h3 className="font-bold text-lg text-gray-900 mb-3">{faq.question}</h3>
+                <p className="text-gray-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+      
     </div>
+    
   );
 
   const ServicesPage = () => (
@@ -294,50 +359,7 @@ const App = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-24">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Explore Our FAQs</h2>
-            <p className="text-gray-600">
-              Find quick answers to commonly asked questions about Neutra.
-              <br />
-              Have a question not listed?
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                question: 'Setup Process?',
-                answer: 'Initial setup is quick and user-friendly, allowing immediate use.'
-              },
-              {
-                question: 'Subscription Costs?',
-                answer: 'Various pricing plans are available to suit different budget needs.'
-              },
-              {
-                question: 'User Support?',
-                answer: '24/7 customer support is available via email, chat, and phone.'
-              },
-              {
-                question: 'Customization Options?',
-                answer: 'Fully customizable to match your brand\'s style and preferences.'
-              },
-              {
-                question: 'Refund Policy?',
-                answer: 'Full refunds provided within 30 days if not satisfied.'
-              },
-              {
-                question: 'Upgrade Options?',
-                answer: 'Easy upgrades available for additional features and capabilities.'
-              }
-            ].map((faq, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-lg text-gray-900 mb-3">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -926,7 +948,7 @@ const App = () => {
         </div>
       </section>
             {/* FAQ Section - Explore Our FAQs */}
-      <section className="py-16 lg:py-24 bg-white">
+        <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-6">Explore Our FAQs</h2>
