@@ -1,54 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, Rocket, Compass, Monitor, Phone, MessageSquare, MapPin, Menu, X } from 'lucide-react';
 
-// Custom hook to add reveal animation on scroll
-const useRevealOnScroll = () => {
+// Custom hook to reveal elements using IntersectionObserver
+const useRevealOnScroll = (dependency) => {
   useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal-up');
-    const revealOnScroll = () => {
-      revealElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (
-          rect.top < window.innerHeight - 40 &&
-          !el.classList.contains('opacity-100')
-        ) {
-          el.classList.add('opacity-100', 'translate-y-0');
-        }
-      });
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
-    return () => window.removeEventListener('scroll', revealOnScroll);
-  }, []);
+    const elements = Array.from(document.querySelectorAll('.reveal-up'));
+
+    // Ensure starting state
+    elements.forEach((el) => {
+      el.classList.remove('opacity-100', 'translate-y-0');
+      el.classList.add('opacity-0', 'translate-y-12');
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: '0px 0px -40px 0px', threshold: 0.1 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [dependency]);
 };
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Reset reveal-up classes on page change
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const revealElements = document.querySelectorAll('.reveal-up');
-      // Reset classes
-      revealElements.forEach((el) => {
-        el.classList.remove('opacity-100', 'translate-y-0');
-        el.classList.add('opacity-0', 'translate-y-12');
-      });
-      // Reveal visible elements
-      revealElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (
-          rect.top < window.innerHeight - 40 &&
-          !el.classList.contains('opacity-100')
-        ) {
-          el.classList.add('opacity-100', 'translate-y-0');
-        }
-      });
-      window.dispatchEvent(new Event('scroll'));
-    }, 300); // Increased timeout for DOM update
-    return () => clearTimeout(timeout);
-  }, [currentPage]);
+  // Reset is handled inside the observer hook now
 
   const navigation = [
     { name: 'Home', key: 'home' },
@@ -1059,7 +1044,7 @@ const App = () => {
     }
   };
 
-  useRevealOnScroll(); // Add this hook to enable scroll reveal
+  useRevealOnScroll(currentPage); // Reinitialize reveals when page changes
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
