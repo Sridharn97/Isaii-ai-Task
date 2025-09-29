@@ -46,7 +46,7 @@ const App = () => {
         }
       });
       window.dispatchEvent(new Event('scroll'));
-    }, 150); // Wait a bit longer for DOM update
+    }, 300); // Increased timeout for DOM update
     return () => clearTimeout(timeout);
   }, [currentPage]);
 
@@ -510,55 +510,31 @@ const App = () => {
 
   const HomePage = () => (
     <div>
-      {/* Hero Section - Innovate, Automate, and Succeed with AI */}
-      <section className="bg-gray-50 py-16 lg:py-24 reveal-up opacity-0 translate-y-12 transition-all duration-700">
+      {/* --- Hero Section - Innovate, Automate, and Succeed with AI --- */}
+      <section className="bg-gray-50 py-8 lg:py-16 reveal-up opacity-0 translate-y-12 transition-all duration-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className="bg-black rounded-3xl relative overflow-hidden flex flex-col lg:flex-row"
+            className="bg-black rounded-3xl relative overflow-hidden flex flex-col items-center justify-center w-full"
             style={{
+              minHeight: '340px', // Reduced height for mobile
+              maxWidth: '500px',  // Responsive max width
+              margin: '0 auto',
               padding: '2rem 1rem',
-              minHeight: '500px',
-              width: '100%',
             }}
           >
             {/* Left: Text Content */}
-            <div className="relative z-10 flex-1 flex flex-col justify-center items-center lg:items-start lg:pl-8">
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
-                Innovate, Automate, 
+            <div className="relative z-10 w-full flex flex-col justify-center items-center px-2 py-8">
+              <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight text-center">
+                Innovate, Automate,<br />
                 and Succeed with AI
-                <br />
               </h1>
-              <p className="text-gray-300 text-lg lg:text-xl mb-8 leading-relaxed text-center lg:text-left max-w-xl">
-                Innovative AI technology designed to solve pressing challenges,
-                providing businesses with strategic, actionable problem-solving
-                tools.
+              <p className="text-gray-300 text-base md:text-lg mb-8 leading-relaxed text-center max-w-md">
+                Innovative AI technology designed to solve pressing challenges, providing businesses with strategic, actionable problem-solving tools.
               </p>
-              <button className="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">
+              <button className="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold flex items-center">
                 Schedule a call
                 <ChevronRight className="ml-2" size={20} />
               </button>
-            </div>
-            {/* Right: Floating Images */}
-            <div className="relative flex-1 flex items-center justify-center min-h-[200px]">
-              {/* Show all three images on large screens */}
-              <img
-                src="https://framerusercontent.com/images/Es0UNVEZFUO6pTmc3NI38eovew.png?scale-down-to=512"
-                alt="AI Shape 1"
-                className="absolute top-0 right-8 w-36 h-36 object-cover rounded-full shadow-lg animate-float-slow hidden sm:block"
-                style={{ animationDelay: '0s' }}
-              />
-              <img
-                src="https://framerusercontent.com/images/LFAxsa4CpX7e4qBI72ijOV2sHg.png?scale-down-to=512"
-                alt="AI Shape 3"
-                className="absolute top-1/2 right-0 w-28 h-28 object-cover rounded-full shadow-lg animate-float-fast hidden md:block"
-                style={{ animationDelay: '1s', transform: 'translateY(-50%)' }}
-              />
-              <img
-                src="https://framerusercontent.com/images/Tq3lgO9Qy66CFuDaYW99KQ5xoLM.png?scale-down-to=512"
-                alt="AI Shape 2"
-                className="absolute bottom-8 right-24 w-32 h-32 object-cover rounded-full shadow-lg animate-float-medium hidden lg:block"
-                style={{ animationDelay: '0.5s' }}
-              />
             </div>
           </div>
         </div>
