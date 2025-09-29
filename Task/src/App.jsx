@@ -808,6 +808,33 @@ const App = () => {
           </div>
         </div>
       </section>
+           {/* Mission Statement Section */}
+      <section className="relative w-full flex flex-col items-center justify-start overflow-visible reveal-up opacity-0 translate-y-12 transition-all duration-700" style={{ padding: '96px 0 192px', height: 'min-content', gap: '0px' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+          {/* Decorative shapes */}
+          <div className="absolute top-16 left-8 lg:left-24 w-20 h-20 lg:w-32 lg:h-32 animate-float-slow">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 50 Q 35 20, 50 25 T 80 50 Q 65 80, 50 75 T 20 50 Z" fill="#1a1a1a"/>
+            </svg>
+          </div>
+          <div className="absolute top-4 right-8 lg:right-16 w-24 h-24 lg:w-40 lg:h-40 animate-float-medium">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 50 Q 40 15, 55 20 T 85 45 Q 75 85, 60 80 T 30 50 Z" fill="#1a1a1a"/>
+            </svg>
+          </div>
+          
+          <div className="text-center relative z-10 max-w-6xl mx-auto py-12">
+            <div className="mb-10 flex justify-center">
+              <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 50 Q 40 20, 55 25 T 80 50 Q 70 80, 55 75 T 30 50 Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 leading-tight px-4">
+              We craft AI solutions today that empower your business for tomorrow and beyond.
+            </h2>
+          </div>
+        </div>
+      </section>
 
       {/* Products Section - Building Digital Excellence with Isaii */}
       <section className="py-16 lg:py-24 bg-white">
