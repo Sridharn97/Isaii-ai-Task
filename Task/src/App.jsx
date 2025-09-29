@@ -178,7 +178,7 @@ const App = () => {
               image: 'https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png'
             }
           ].map((product, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div
                 className="h-48 w-full overflow-hidden bg-gray-100 cursor-pointer group"
                 onClick={() => setCurrentPage('contact')}
@@ -368,7 +368,7 @@ const App = () => {
 
           {/* Contact Methods */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-6">
                 <MessageSquare className="text-gray-600" size={24} />
               </div>
@@ -379,7 +379,7 @@ const App = () => {
               <div className="text-sm text-gray-500">support@isaii.com</div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-6">
                 <Phone className="text-gray-600" size={24} />
               </div>
@@ -390,7 +390,7 @@ const App = () => {
               <div className="text-sm text-gray-500">hr@isaii.in</div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-6">
                 <MapPin className="text-gray-600" size={24} />
               </div>
@@ -880,7 +880,7 @@ const App = () => {
                 image: 'https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png'
               }
             ].map((product, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <div
                   className="h-48 w-full overflow-hidden bg-gray-100 cursor-pointer group"
                   onClick={() => setCurrentPage('contact')}
