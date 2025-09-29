@@ -28,14 +28,14 @@ const App = () => {
 
   // Reset reveal-up classes on page change
   useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal-up');
-    // Reset classes
-    revealElements.forEach((el) => {
-      el.classList.remove('opacity-100', 'translate-y-0');
-      el.classList.add('opacity-0', 'translate-y-12');
-    });
-    // Trigger scroll handler to reveal visible elements immediately
-    const revealOnScroll = () => {
+    const timeout = setTimeout(() => {
+      const revealElements = document.querySelectorAll('.reveal-up');
+      // Reset classes
+      revealElements.forEach((el) => {
+        el.classList.remove('opacity-100', 'translate-y-0');
+        el.classList.add('opacity-0', 'translate-y-12');
+      });
+      // Reveal visible elements
       revealElements.forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (
@@ -45,8 +45,9 @@ const App = () => {
           el.classList.add('opacity-100', 'translate-y-0');
         }
       });
-    };
-    revealOnScroll();
+      window.dispatchEvent(new Event('scroll'));
+    }, 150); // Wait a bit longer for DOM update
+    return () => clearTimeout(timeout);
   }, [currentPage]);
 
   const navigation = [
@@ -509,7 +510,7 @@ const App = () => {
 
   const HomePage = () => (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section - Innovate, Automate, and Succeed with AI */}
       <section className="bg-gray-50 py-16 lg:py-24 reveal-up opacity-0 translate-y-12 transition-all duration-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
@@ -563,7 +564,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - Unleash the Power of Our AI Innovations */}
       <section className="py-16 lg:py-24 reveal-up opacity-0 translate-y-12 transition-all duration-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -613,7 +614,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Professional Services Section */}
+      {/* Professional Services Section - Our services */}
       <section className="py-16 lg:py-24 bg-white reveal-up opacity-0 translate-y-12 transition-all duration-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
@@ -807,6 +808,146 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Products Section - Building Digital Excellence with Isaii */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Building Digital Excellence with Isaii.
+            </h1>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Discover the innovative marketing strategies that set Isaii-Ai&nbsp; apart, driving success in the digital landscape.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Product Cards (same as ProductsPage) */}
+            {[
+              {
+                title: 'Isaii-Daillo',
+                subtitle: 'Telephony AI',
+                type: 'AI Telephony AGENT',
+                gradient: 'from-teal-400 to-cyan-500'
+              },
+              {
+                title: 'Isaii Whispher',
+                subtitle: 'Voice Ai that can be integrated wherever he want',
+                type: 'AI Custom Chat AGENT',
+                gradient: 'from-purple-400 to-pink-500'
+              },
+              {
+                title: 'Isaii Assit',
+                subtitle: 'Chatbot that can be intergrated to their website in 1 click',
+                type: 'AI CustomVoice AGENT',
+                gradient: 'from-blue-400 to-indigo-500'
+              },
+              {
+                title: 'Isaii WhatsApp',
+                subtitle: 'Chatbot intergrated to Whatsapp',
+                type: 'Whatsapp AGENT',
+                gradient: 'from-green-400 to-teal-500'
+              },
+              {
+                title: 'Isaii Instagram',
+                subtitle: 'Chatbot intergrated to Instagram',
+                type: 'Instagram AGENT',
+                gradient: 'from-pink-400 to-purple-500'
+              },
+              {
+                title: 'Isaii Direct',
+                subtitle: 'Directly Access our API with key and can limit your access',
+                type: 'API AGENT',
+                gradient: 'from-blue-400 to-cyan-500'
+              },
+              {
+                title: 'Bill Buddy',
+                subtitle: 'Ai integrated self billing system',
+                type: 'Billing SYSTEM',
+                gradient: 'from-yellow-400 to-orange-500'
+              },
+              {
+                title: 'Direkt',
+                subtitle: 'Ai integrated product selling solution',
+                type: 'Marketplace AGENT',
+                gradient: 'from-purple-400 to-indigo-500'
+              },
+              {
+                title: 'Isaii Commerce',
+                subtitle: 'Ai intergrate E-commerce solution',
+                type: 'E-commerce SOLUTION',
+                gradient: 'from-pink-400 to-blue-500'
+              }
+            ].map((product, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div className={`h-48 bg-gradient-to-br ${product.gradient} flex items-center justify-center`}>
+                  <div className="bg-white rounded-xl p-6 m-6 w-full">
+                    <div className="w-8 h-8 bg-black rounded-full mb-4 flex items-center justify-center">
+                      <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
+                    </div>
+                    <div className="text-purple-300 text-sm mb-2">AI</div>
+                    <div className="font-bold text-xl mb-1">{product.type.split(' ')[0]}</div>
+                    <div className="text-xs text-gray-500">{product.type}</div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-xl text-gray-900 mb-2">{product.title}</h3>
+                  <p className="text-gray-600">{product.subtitle}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+            {/* FAQ Section - Explore Our FAQs */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">Explore Our FAQs</h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Find quick answers to commonly asked questions about Isaii-AI.<br />
+              Have a question not listed?
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Trial Period?</h3>
+              <p className="text-gray-600">
+                We offer a risk-free trial period to allow you to experience the benefits of our AI solutions firsthand.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Performance Guarantees?</h3>
+              <p className="text-gray-600">
+                We deliver performance benchmarks and provide ongoing optimization to ensure your AI systems operate at their best.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Customer Support?</h3>
+              <p className="text-gray-600">
+                Dedicated 24/7 support is available through email, chat, and phone to assist with any questions or technical issues.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Customization Options?</h3>
+              <p className="text-gray-600">
+                Our AI systems are fully customizable to align with your business goals, workflows, and branding requirements.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Data Security?</h3>
+              <p className="text-gray-600">
+                We implement robust security measures, including encryption and compliance with GDPR and other data protection standards.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">Updates and Maintenance?</h3>
+              <p className="text-gray-600">
+                Regular updates are included to keep your AI solutions cutting-edge, along with maintenance to ensure smooth operation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       
     </div>
   );
@@ -816,7 +957,7 @@ const App = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
         {/* Left: Brand and Copyright */}
         <div className="flex-1">
-          <h1 className="text-6xl font-semibold text-gray-400 mb-8">ISAI-AI</h1>
+          <h1 className="text-6xl font-semibold text-gray-400 mb-8">ISAAI-AI</h1>
           <p className="mt-8 text-lg">Copyright © 2024 – Isaii-AI</p>
         </div>
         {/* Right: Newsletter & Social */}
