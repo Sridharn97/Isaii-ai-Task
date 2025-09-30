@@ -47,10 +47,9 @@ const App = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <span className="text-2xl font-bold">
-              <span className="text-purple-600">Isaii</span>
-              <span className="text-gray-400 text-sm ml-1">AI</span>
-            </span>
+            <div className="bg-white rounded-xl px-3 py-1 shadow-sm">
+              <img src="/vite.svg" alt="Isaii AI" className="h-8 w-auto" />
+            </div>
           </div>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -178,7 +177,7 @@ const App = () => {
               image: 'https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png'
             }
           ].map((product, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl reveal-up opacity-0 translate-y-12">
               <div
                 className="h-48 w-full overflow-hidden bg-gray-100 cursor-pointer group"
                 onClick={() => setCurrentPage('contact')}
@@ -495,55 +494,60 @@ const App = () => {
   const HomePage = () => (
     <div>
       {/* Hero Section - Innovate, Automate, and Succeed with AI */}
-      <section className="bg-gray-50 py-16 lg:py-24 reveal-up opacity-0 translate-y-12 transition-all duration-700">
+      <section className="bg-gray-50 py-8 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="bg-black rounded-3xl relative overflow-hidden flex flex-col lg:flex-row"
-            style={{
-              padding: '2rem 1rem',
-              minHeight: '500px',
-              width: '100%',
-            }}
-          >
+          <div className="bg-black rounded-3xl relative overflow-hidden flex flex-col lg:flex-row p-4 sm:p-6 lg:p-8 lg:min-h-[500px] w-full">
+            {/* Mobile floating orb pinned to top-right of the card */}
+            <img
+              src="https://framerusercontent.com/images/Es0UNVEZFUO6pTmc3NI38eovew.png?scale-down-to=512"
+              alt="AI Orb"
+              className="absolute top-6 right-6 w-20 h-20 object-cover animate-float-slow lg:hidden"
+              style={{ animationDelay: '0s' }}
+            />
+            
             {/* Left: Text Content */}
-            <div className="relative z-10 flex-1 flex flex-col justify-center items-center lg:items-start lg:pl-8">
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
-                Innovate, Automate, 
+            <div className="relative z-10 flex-1 flex flex-col justify-center items-start lg:pl-8 pt-6">
+              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                
+                Innovate,<br className="lg:hidden" />
+                <span className="hidden lg:inline">Automate, </span>
+                
                 and Succeed with AI
-                <br />
               </h1>
-              <p className="text-gray-300 text-lg lg:text-xl mb-8 leading-relaxed text-center lg:text-left max-w-xl">
-                Innovative AI technology designed to solve pressing challenges,
-                providing businesses with strategic, actionable problem-solving
-                tools.
+              <p className="text-gray-400 text-sm lg:text-xl mb-8 leading-relaxed max-w-xl">
+                Innovative AI technology designed to solve pressing challenges, providing businesses with strategic, actionable problem-solving tools.
               </p>
-              <button className="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">
-                Schedule a call
-                <ChevronRight className="ml-2" size={20} />
+              <button className="flex items-center w-full lg:w-auto bg-gray-700 hover:bg-gray-600 rounded-2xl overflow-hidden transition-colors">
+                <span className="flex-1 lg:flex-none text-white px-6 py-4 font-medium">
+                  Schedule a call
+                </span>
+                <span className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-4 flex items-center justify-center transition-colors">
+                  <ChevronRight size={20} />
+                </span>
               </button>
             </div>
-            {/* Right: Floating Images */}
-            <div className="relative flex-1 flex items-center justify-center min-h-[200px]">
-              {/* Show all three images on large screens */}
-              <img
-                src="https://framerusercontent.com/images/Es0UNVEZFUO6pTmc3NI38eovew.png?scale-down-to=512"
-                alt="AI Shape 1"
-                className="absolute top-0 right-8 w-36 h-36 object-cover rounded-full shadow-lg animate-float-slow hidden sm:block"
-                style={{ animationDelay: '0s' }}
-              />
-              <img
-                src="https://framerusercontent.com/images/LFAxsa4CpX7e4qBI72ijOV2sHg.png?scale-down-to=512"
-                alt="AI Shape 3"
-                className="absolute top-1/2 right-0 w-28 h-28 object-cover rounded-full shadow-lg animate-float-fast hidden md:block"
-                style={{ animationDelay: '1s', transform: 'translateY(-50%)' }}
-              />
-              <img
-                src="https://framerusercontent.com/images/Tq3lgO9Qy66CFuDaYW99KQ5xoLM.png?scale-down-to=512"
-                alt="AI Shape 2"
-                className="absolute bottom-8 right-24 w-32 h-32 object-cover rounded-full shadow-lg animate-float-medium hidden lg:block"
-                style={{ animationDelay: '0.5s' }}
-              />
-            </div>
+            
+            {/* Right: Floating Images (desktop/tablet) */}
+<div className="relative flex-1 items-center justify-center min-h-[200px] hidden lg:flex">
+  <img
+    src="https://framerusercontent.com/images/Es0UNVEZFUO6pTmc3NI38eovew.png?scale-down-to=512"
+    alt="AI Orb"
+    className="absolute top-[15%] left-[20%] w-48 h-48 object-cover animate-float-slow"
+    style={{ animationDelay: '0s' }}
+  />
+  <img
+    src="https://framerusercontent.com/images/Tq3lgO9Qy66CFuDaYW99KQ5xoLM.png?scale-down-to=512"
+    alt="AI Shape 2"
+    className="absolute bottom-[10%] right-[15%] w-52 h-52 object-cover rounded-full shadow-lg animate-float-medium"
+    style={{ animationDelay: '0.5s' }}
+  />
+  <img
+    src="https://framerusercontent.com/images/LFAxsa4CpX7e4qBI72ijOV2sHg.png?scale-down-to=512"
+    alt="AI Shape 3"
+    className="absolute top-[35%] right-[8%] w-44 h-44 object-cover rounded-full shadow-lg animate-float-fast"
+    style={{ animationDelay: '1s' }}
+  />
+</div>
           </div>
         </div>
       </section>
