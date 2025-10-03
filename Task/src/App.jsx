@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, Rocket, Compass, Monitor, Phone, MessageSquare, MapPin, Menu, X } from 'lucide-react';
+import { motion } from "framer-motion";
 
 // Custom hook to reveal elements using IntersectionObserver
 const useRevealOnScroll = (dependency) => {
@@ -100,230 +101,388 @@ const App = () => {
     </header>
   );
 
-  const ProductsPage = () => (
-    <div className="py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+const ProductsPage = ({ setCurrentPage }) => (
+  <div className="py-20 lg:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      {/* Heading */}
+      <motion.div
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center mb-20"
+      >
+        <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
+          Our Products
+        </h1>
+        <p className="text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed">
+          Discover the innovative marketing strategies that set{" "}
+          <span className="font-semibold text-indigo-600">Isaii-Ai</span> apart,
+          driving success in the digital landscape.
+        </p>
+      </motion.div>
+
+      {/* Product Cards */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {[
+          {
+            title: "Isaii-Daillo",
+            subtitle: "Telephony AI",
+            type: "AI Telephony AGENT",
+            gradient: "from-teal-400 to-cyan-500",
+            image:
+              "https://framerusercontent.com/images/nUyYMvoY4UXXPS7H1sUU2NlZYk.jpg?scale-down-to=1024",
+          },
+          {
+            title: "Isaii Whispher",
+            subtitle: "Voice AI that can be integrated wherever he want",
+            type: "AI Custom Chat AGENT",
+            gradient: "from-purple-400 to-pink-500",
+            image:
+              "https://framerusercontent.com/images/fq3HOUsRRP2u0Lcppvq43g.png",
+          },
+          {
+            title: "Isaii Assit",
+            subtitle: "Chatbot that can be integrated to their website in 1 click",
+            type: "AI CustomVoice AGENT",
+            gradient: "from-blue-400 to-indigo-500",
+            image:
+              "https://framerusercontent.com/images/SugX8Csm6hUFMJwDS1pwfOwIoXk.png",
+          },
+          {
+            title: "Isaii WhatsApp",
+            subtitle: "Coming Soon",
+            type: "AI AGENT",
+            gradient: "from-green-400 to-emerald-500",
+            image:
+              "https://framerusercontent.com/images/t91I5eij1mhMdwAqGQn15ZM9I3U.png",
+          },
+          {
+            title: "Isaii Instagram",
+            subtitle: "Coming Soon",
+            type: "AI AGENT",
+            gradient: "from-orange-400 to-red-500",
+            image:
+              "https://framerusercontent.com/images/0ImJTakP624MeStH5usjuO7qL5c.png",
+          },
+          {
+            title: "Isaii Direct",
+            subtitle: "Coming Soon",
+            type: "AI AGENT",
+            gradient: "from-pink-400 to-rose-500",
+            image:
+              "https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png",
+          },
+          {
+            title: "Bill Buddy",
+            subtitle: "Ai integrated self billing system",
+            type: "Billing SYSTEM",
+            gradient: "from-yellow-400 to-orange-500",
+            image:
+              "https://framerusercontent.com/images/keIZef0rznBr8S7SrzE19b2UYCY.png",
+          },
+          {
+            title: "Direkt",
+            subtitle: "Ai integrated product selling solution",
+            type: "Marketplace AGENT",
+            gradient: "from-purple-400 to-indigo-500",
+            image:
+              "https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png",
+          },
+          {
+            title: "Isaii Commerce",
+            subtitle: "Ai intergrate E-commerce solution",
+            type: "E-commerce SOLUTION",
+            gradient: "from-pink-400 to-blue-500",
+            image:
+              "https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png",
+          },
+        ].map((product, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ scale: 1.05, y: -6 }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl"
+            onClick={() => setCurrentPage("contact")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setCurrentPage("contact");
+              }
+            }}
+          >
+            <div
+              className={`h-52 w-full overflow-hidden bg-gradient-to-r ${product.gradient}`}
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="font-bold text-xl text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-300">
+                {product.title}
+              </h3>
+              <p className="text-gray-600">{product.subtitle}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* FAQ Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="mt-28"
+      >
         <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Our Products</h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover the innovative marketing strategies that set Isaii-Ai apart, driving success in the digital landscape.
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">
+            Explore Our FAQs
+          </h2>
+          <p className="text-gray-600 max-w-xl mx-auto leading-relaxed">
+            Find quick answers to commonly asked questions about{" "}
+            <span className="font-semibold text-indigo-600">Neutra</span>.
+            <br />
+            Have a question not listed?
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Product Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {[
             {
-              title: 'Isaii-Daillo',
-              subtitle: 'Telephony AI',
-              type: 'AI Telephony AGENT',
-              gradient: 'from-teal-400 to-cyan-500',
-              image: 'https://framerusercontent.com/images/nUyYMvoY4UXXPS7H1sUU2NlZYk.jpg?scale-down-to=1024'
+              question: "Setup Process?",
+              answer:
+                "Initial setup is quick and user-friendly, allowing immediate use.",
             },
             {
-              title: 'Isaii Whispher',
-              subtitle: 'Voice AI that can be integrated wherever he want',
-              type: 'AI Custom Chat AGENT',
-              gradient: 'from-purple-400 to-pink-500',
-              image: 'https://framerusercontent.com/images/fq3HOUsRRP2u0Lcppvq43g.png'
+              question: "Subscription Costs?",
+              answer:
+                "Various pricing plans are available to suit different budget needs.",
             },
             {
-              title: 'Isaii Assit',
-              subtitle: 'Chatbot that can be integrated to their website in 1 click',
-              type: 'AI CustomVoice AGENT',
-              gradient: 'from-blue-400 to-indigo-500',
-              image: 'https://framerusercontent.com/images/SugX8Csm6hUFMJwDS1pwfOwIoXk.png'
+              question: "User Support?",
+              answer: "24/7 customer support is available via email, chat, and phone.",
             },
             {
-              title: 'Isaii WhatsApp',
-              subtitle: 'Coming Soon',
-              type: 'AI AGENT',
-              gradient: 'from-green-400 to-emerald-500',
-              image: 'https://framerusercontent.com/images/t91I5eij1mhMdwAqGQn15ZM9I3U.png'
+              question: "Customization Options?",
+              answer:
+                "Fully customizable to match your brand's style and preferences.",
             },
             {
-              title: 'Isaii Instagram',
-              subtitle: 'Coming Soon',
-              type: 'AI AGENT',
-              gradient: 'from-orange-400 to-red-500',
-              image: 'https://framerusercontent.com/images/0ImJTakP624MeStH5usjuO7qL5c.png'
+              question: "Refund Policy?",
+              answer: "Full refunds provided within 30 days if not satisfied.",
             },
             {
-              title: 'Isaii Direct',
-              subtitle: 'Coming Soon',
-              type: 'AI AGENT',
-              gradient: 'from-pink-400 to-rose-500',
-              image: 'https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png'
+              question: "Upgrade Options?",
+              answer:
+                "Easy upgrades available for additional features and capabilities.",
             },
-            {
-              title: 'Bill Buddy',
-              subtitle: 'Ai integrated self billing system',
-              type: 'Billing SYSTEM',
-              gradient: 'from-yellow-400 to-orange-500',
-              image: 'https://framerusercontent.com/images/keIZef0rznBr8S7SrzE19b2UYCY.png'
-            },
-            {
-              title: 'Direkt',
-              subtitle: 'Ai integrated product selling solution',
-              type: 'Marketplace AGENT',
-              gradient: 'from-purple-400 to-indigo-500',
-              image: 'https://framerusercontent.com/images/RbW5KtbEhj1REbz8OYj1D9Cy8.png'
-            },
-            {
-              title: 'Isaii Commerce',
-              subtitle: 'Ai intergrate E-commerce solution',
-              type: 'E-commerce SOLUTION',
-              gradient: 'from-pink-400 to-blue-500',
-              image: 'https://framerusercontent.com/images/nC1Al5zumZz1FPsYvAuyblIC2s.png'
-            }
-          ].map((product, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl reveal-up opacity-0 translate-y-12">
-              <div
-                className="h-48 w-full overflow-hidden bg-gray-100 cursor-pointer group"
-                onClick={() => setCurrentPage('contact')}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { setCurrentPage('contact'); } }}
-              >
-                <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
-                <h3 className="font-bold text-xl text-gray-900 mb-2">{product.title}</h3>
-                <p className="text-gray-600">{product.subtitle}</p>
-              </div>
-            </div>
+          ].map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-shadow"
+            >
+              <h3 className="font-bold text-lg text-gray-900 mb-3">
+                {faq.question}
+              </h3>
+              <p className="text-gray-600">{faq.answer}</p>
+            </motion.div>
           ))}
         </div>
-        {/* FAQ Section (same structure as Services) */}
-        <div className="mt-24">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Explore Our FAQs</h2>
-            <p className="text-gray-600">
-              Find quick answers to commonly asked questions about Neutra.
-              <br />
-              Have a question not listed?
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                question: 'Setup Process?',
-                answer: 'Initial setup is quick and user-friendly, allowing immediate use.'
-              },
-              {
-                question: 'Subscription Costs?',
-                answer: 'Various pricing plans are available to suit different budget needs.'
-              },
-              {
-                question: 'User Support?',
-                answer: '24/7 customer support is available via email, chat, and phone.'
-              },
-              {
-                question: 'Customization Options?',
-                answer: 'Fully customizable to match your brand\'s style and preferences.'
-              },
-              {
-                question: 'Refund Policy?',
-                answer: 'Full refunds provided within 30 days if not satisfied.'
-              },
-              {
-                question: 'Upgrade Options?',
-                answer: 'Easy upgrades available for additional features and capabilities.'
-              }
-            ].map((faq, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-lg text-gray-900 mb-3">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
+      </motion.div>
     </div>
-    
-  );
+  </div>
+);
 
-  const ServicesPage = () => (
-    <div className="py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Our Services</h1>
-          <p className="text-gray-600 text-lg">
-            Professional Services That Showcase Our Expertise
-          </p>
-        </div>
 
-        {/* Three service cards with images as in reference */}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {/* Designing */}
-          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
-            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
-              <img src="https://framerusercontent.com/images/vss98kimC7Rm3BkWtOJ4E7PF0.png?scale-down-to=512" alt="Designing" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            </div>
-            <h3 className="mt-6 font-bold text-xl text-gray-900">Designing</h3>
+
+
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 60, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const ServicesPage = () => (
+  <div className="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Our Services</h1>
+        <p className="text-gray-600 text-lg">
+          Professional Services That Showcase Our Expertise
+        </p>
+      </motion.div>
+
+      {/* Service Cards */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* Designing */}
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="reveal-up rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 group"
+        >
+          <div className="h-80 w-full overflow-hidden">
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src="https://framerusercontent.com/images/vss98kimC7Rm3BkWtOJ4E7PF0.png?scale-down-to=512"
+              alt="Designing"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6 bg-white">
+            <h3 className="mt-2 font-bold text-xl text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+              Designing
+            </h3>
             <p className="text-gray-600 mt-2">
               We provide expert design services that ensure your digital platforms are visually appealing, user-centric,
               and aligned with your brand's goals for optimal customer interaction.
             </p>
           </div>
+        </motion.div>
 
-          {/* Custom AI Solutions */}
-          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
-            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
-              <img src="https://framerusercontent.com/images/HvEjI5nnCrtIvttqSWsyCuVM.jpg?scale-down-to=512" alt="Custom AI Solutions" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            </div>
-            <h3 className="mt-6 font-bold text-xl text-gray-900">Custom AI Solutions</h3>
+        {/* Custom AI Solutions */}
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: 0.2 }}
+          className="reveal-up rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 group"
+        >
+          <div className="h-80 w-full overflow-hidden">
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src="https://framerusercontent.com/images/HvEjI5nnCrtIvttqSWsyCuVM.jpg?scale-down-to=512"
+              alt="Custom AI Solutions"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6 bg-white">
+            <h3 className="mt-2 font-bold text-xl text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+              Custom AI Solutions
+            </h3>
             <p className="text-gray-600 mt-2">
               We build bespoke AI systems tailored to your business needs, enhancing efficiency, performance,
               and driving continuous innovation.
             </p>
           </div>
+        </motion.div>
 
-          {/* SaaS Products */}
-          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
-            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
-              <img src="https://framerusercontent.com/images/gEuLZWqISbowA6Z5TeEzISEsgs.jpg?scale-down-to=512" alt="SaaS Products" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            </div>
-            <h3 className="mt-6 font-bold text-xl text-gray-900">SaaS Products</h3>
+        {/* SaaS Products */}
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: 0.4 }}
+          className="reveal-up rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 group"
+        >
+          <div className="h-80 w-full overflow-hidden">
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src="https://framerusercontent.com/images/gEuLZWqISbowA6Z5TeEzISEsgs.jpg?scale-down-to=512"
+              alt="SaaS Products"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6 bg-white">
+            <h3 className="mt-2 font-bold text-xl text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+              SaaS Products
+            </h3>
             <p className="text-gray-600 mt-2">
               We offer scalable SaaS products that streamline operations, enhance user experience,
               and provide efficient solutions tailored to your business needs.
             </p>
           </div>
+        </motion.div>
 
-          {/* Web Application */}
-          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
-            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
-              <img src="https://framerusercontent.com/images/HvEjI5nnCrtIvttqSWsyCuVM.jpg?scale-down-to=512" alt="Web Application" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            </div>
-            <h3 className="mt-6 font-bold text-xl text-gray-900">Web Application</h3>
+        {/* Web Application */}
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: 0.6 }}
+          className="reveal-up rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 group"
+        >
+          <div className="h-80 w-full overflow-hidden">
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src="https://framerusercontent.com/images/HvEjI5nnCrtIvttqSWsyCuVM.jpg?scale-down-to=512"
+              alt="Web Application"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6 bg-white">
+            <h3 className="mt-2 font-bold text-xl text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+              Web Application
+            </h3>
             <p className="text-gray-600 mt-2">
               We develop custom web applications designed to deliver seamless functionality, improve user
               engagement, and drive business growth through intuitive, responsive design.
             </p>
           </div>
+        </motion.div>
 
-          {/* Mobile Application */}
-          <div className="reveal-up opacity-0 translate-y-12 transition-all duration-700">
-            <div className="h-80 w-full rounded-3xl overflow-hidden shadow-md group">
-              <img src="https://framerusercontent.com/images/KjsfCaVMvkjlLs2CFlHb4HZqE.jpg?scale-down-to=1024" alt="Mobile Application" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            </div>
-            <h3 className="mt-6 font-bold text-xl text-gray-900">Mobile Application</h3>
+        {/* Mobile Application */}
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: 0.8 }}
+          className="reveal-up rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 group"
+        >
+          <div className="h-80 w-full overflow-hidden">
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src="https://framerusercontent.com/images/KjsfCaVMvkjlLs2CFlHb4HZqE.jpg?scale-down-to=1024"
+              alt="Mobile Application"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6 bg-white">
+            <h3 className="mt-2 font-bold text-xl text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+              Mobile Application
+            </h3>
             <p className="text-gray-600 mt-2">
               Our mobile app development services create user-friendly, high-performance apps that cater to your
               business goals, offering a superior mobile experience for customers.
             </p>
           </div>
-        </div>
-
-        {/* FAQ Section */}
-
+        </motion.div>
       </div>
     </div>
-  );
+  </div>
+);
+
+
+
 
   const ContactPage = () => {
     const [formData, setFormData] = useState({
