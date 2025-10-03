@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, Rocket, Compass, Monitor, Phone, MessageSquare, MapPin, Menu, X } from 'lucide-react';
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import AnimatedText from "./AnimatedText";
 
 // Custom hook to reveal elements using IntersectionObserver
 const useRevealOnScroll = (dependency) => {
@@ -687,26 +688,34 @@ const ServicesPage = () => (
             </div>
             
             {/* Right: Floating Images (desktop/tablet) */}
+
 <div className="relative flex-1 items-center justify-center min-h-[200px] hidden lg:flex">
+  {/* Top-left Orb */}
   <img
     src="https://framerusercontent.com/images/Es0UNVEZFUO6pTmc3NI38eovew.png?scale-down-to=512"
     alt="AI Orb"
-    className="absolute top-[15%] left-[20%] w-48 h-48 object-cover animate-float-slow"
+    className="absolute top-[8%] left-[12%] w-48 h-48 object-cover animate-float-slow"
     style={{ animationDelay: '0s' }}
   />
+
+  {/* Bottom-left Shape */}
   <img
     src="https://framerusercontent.com/images/Tq3lgO9Qy66CFuDaYW99KQ5xoLM.png?scale-down-to=512"
     alt="AI Shape 2"
-    className="absolute bottom-[10%] right-[15%] w-52 h-52 object-cover rounded-full shadow-lg animate-float-medium"
+    className="absolute bottom-[8%] left-[25%] w-56 h-56 object-cover rounded-full shadow-lg animate-float-medium"
     style={{ animationDelay: '0.5s' }}
   />
+
+  {/* Right-side Shape */}
   <img
     src="https://framerusercontent.com/images/LFAxsa4CpX7e4qBI72ijOV2sHg.png?scale-down-to=512"
     alt="AI Shape 3"
-    className="absolute top-[35%] right-[8%] w-44 h-44 object-cover rounded-full shadow-lg animate-float-fast"
+    className="absolute top-[30%] right-[12%] w-48 h-48 object-cover rounded-full shadow-lg animate-float-fast"
     style={{ animationDelay: '1s' }}
   />
 </div>
+
+
           </div>
         </div>
       </section>
@@ -956,32 +965,28 @@ const ServicesPage = () => (
         </div>
       </section>
            {/* Mission Statement Section */}
-      <section className="relative w-full flex flex-col items-center justify-start overflow-visible reveal-up opacity-0 translate-y-12 transition-all duration-700" style={{ padding: '96px 0 192px', height: 'min-content', gap: '0px' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
-          {/* Decorative shapes */}
-          <div className="absolute top-16 left-8 lg:left-24 w-20 h-20 lg:w-32 lg:h-32 animate-float-slow">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 50 Q 35 20, 50 25 T 80 50 Q 65 80, 50 75 T 20 50 Z" fill="#1a1a1a"/>
-            </svg>
-          </div>
-          <div className="absolute top-4 right-8 lg:right-16 w-24 h-24 lg:w-40 lg:h-40 animate-float-medium">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 50 Q 40 15, 55 20 T 85 45 Q 75 85, 60 80 T 30 50 Z" fill="#1a1a1a"/>
-            </svg>
-          </div>
-          
-          <div className="text-center relative z-10 max-w-6xl mx-auto py-12">
-            <div className="mb-10 flex justify-center">
-              <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 50 Q 40 20, 55 25 T 80 50 Q 70 80, 55 75 T 30 50 Z" fill="#1a1a1a"/>
-              </svg>
-            </div>
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 leading-tight px-4">
-              We craft AI solutions today that empower your business for tomorrow and beyond.
-            </h2>
-          </div>
-        </div>
-      </section>
+<section
+  className="relative w-full h-full flex flex-col items-center justify-center bg-gray-450"
+  style={{ minHeight: "100vh", padding: "80px 0px 160px" }}
+>
+  {/* Container for text and image */}
+  <div className="relative flex flex-col items-center">
+    {/* Small Image slightly left of center */}
+    <img
+      src="https://framerusercontent.com/images/Gy6oyLvyryjSizdl2va3wLbiYjc.png?scale-down-to=512"
+      alt="Icon"
+      className="w-16 h-16 sm:w-10 sm:h-10 absolute -top-20 left-1  transform -translate-x-1/3"
+    />
+
+    {/* Hero Heading */}
+    <AnimatedText
+      text="We craft AI solutions today that empower your business for tomorrow and beyond."
+      className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 text-top leading-snug px-4 max-w-3xl"
+    />
+  </div>
+</section>
+
+
 
       {/* Products Section - Building Digital Excellence with Isaii */}
       <section className="py-16 lg:py-24 bg-white">
